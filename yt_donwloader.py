@@ -20,18 +20,27 @@ def download(video):
         else:
             x = False
             print("\ntry again\n")
+    streams.clear()
+
+
     for stream in video.streams.filter(resolution=video_quality):
         print(stream)
+        streams.add(stream.itag)
+        print(streams)
+
+
     while y is False:
-         itag_input =  input("Give the desired itag from above : ")
-         if itag_input in video.streams.filter():
+         itag_input =  int(input("Give the desired itag from above : "))
+         if itag_input in streams:
             y = True
-            stream = video.streams.get_by_itag(int(itag_input))
-            print("starting download ")
-            stream.download("C:\\Users\\kalid\\Downloads")
          else:
             y = False
-            print("\ntry again\n")            
+            print("\ntry again\n")  
+
+
+    stream = video.streams.get_by_itag(int(itag_input))
+    print("starting download ")
+    stream.download("C:\\Users\\kalid\\Downloads")    
         
 
 def uri_validator(x):
