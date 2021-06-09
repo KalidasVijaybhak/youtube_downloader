@@ -1,7 +1,7 @@
 from pytube import YouTube   # importing youtube class from pytube
 
-# url = str(input("Enter ur url: "))
-url = 'https://www.youtube.com/watch?v=rUWxSEwctFU'
+url = str(input("Enter ur url: "))
+# url = 'https://www.youtube.com/watch?v=rUWxSEwctFU'
 video = YouTube(url)			# if we just used import pytube then we should have used video  = pytube.YouTube(url)
 streams = set()								
 print("Your video title is: "+ video.title)
@@ -10,7 +10,7 @@ for stream in video.streams.filter(type="video"):  # Only look for video streams
     streams.add(stream.resolution)
 
 print(streams)
-video_quality = str(input("Enter qyuality: "))
+video_quality = str(input("Enter quality: "))
 
 for stream in video.streams.filter(resolution=video_quality):
     print(stream)
